@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import  {AngularFireModule} from '@angular/fire/compat';
 import {AngularFireAuthModule} from '@angular/fire/compat/auth';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [		
@@ -17,14 +18,7 @@ import {AngularFireAuthModule} from '@angular/fire/compat/auth';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp({
-      apiKey: "AIzaSyBNwwQ6tgYlrC5qCH_fklwjouA3ORh2Ios",
-      authDomain: "firststep-auth.firebaseapp.com",
-      projectId: "firststep-auth",
-      storageBucket: "firststep-auth.appspot.com",
-      messagingSenderId: "25710646588",
-      appId: "1:25710646588:web:ba8efb68df754449997a39"
-    }),
+    AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule
 
   ],
