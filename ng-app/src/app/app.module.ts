@@ -9,6 +9,8 @@ import  {AngularFireModule} from '@angular/fire/compat';
 import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import firebase from 'firebase/compat/app';
+
 
 @NgModule({
   declarations: [		

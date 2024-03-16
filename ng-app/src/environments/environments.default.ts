@@ -1,3 +1,4 @@
+import firebase from 'firebase/compat/app';
 export const defaultEnvironment = {
     firebase:{
       apiKey: "AIzaSyBNwwQ6tgYlrC5qCH_fklwjouA3ORh2Ios",
