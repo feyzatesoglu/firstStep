@@ -17,6 +17,9 @@ export class LoginComponent implements OnInit {
     private authenticationService:AuthenticationService,
     private router:Router
   ) { }
+  
+  email!: string;
+  password!: string;
 
   ngOnInit(): void {
     this.form=this.formBuilder.group({
@@ -26,12 +29,11 @@ export class LoginComponent implements OnInit {
   }
   login(){
 this.isLoggingIn=true;
-this.authenticationService.logIn({
-  email: this.form.value.email,
-  password: this.form.value.password
-}).subscribe(()=>{
-  this.router.navigate(['home']);
-})
+this.authenticationService.signWithEmailandPassword(this.email,this.password).then(res=>{
+  console.log('Login successful');
+  //direct profile
+}).catch(err=>console.error('login failed',err));
 
-  }
+}
+
 }
