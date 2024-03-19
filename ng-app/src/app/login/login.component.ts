@@ -33,7 +33,9 @@ this.authenticationService.signWithEmailandPassword(this.email,this.password).th
   console.log('Login successful');
   //direct profile
 }).catch(err=>console.error('login failed',err));
-
+}
+loginWithGoogle(){
+  this.authenticationService.SignInWithGoogle();
 }
 
 }
