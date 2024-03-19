@@ -19,6 +19,7 @@ import firebase from 'firebase/compat/app';
       RegisterComponent
    ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
