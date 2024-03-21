@@ -10,13 +10,15 @@ import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import firebase from 'firebase/compat/app';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
-  declarations: [		
+  declarations: [			
     AppComponent,
       LoginComponent,
-      RegisterComponent
+      RegisterComponent,
+      ProfileComponent
    ],
   imports: [
     FormsModule,

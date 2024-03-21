@@ -31,11 +31,12 @@ export class LoginComponent implements OnInit {
 this.isLoggingIn=true;
 this.authenticationService.signWithEmailandPassword(this.email,this.password).then(res=>{
   console.log('Login successful');
-  //direct profile
+  this.router.navigate(['/profile']);
 }).catch(err=>console.error('login failed',err));
 }
 loginWithGoogle(){
   this.authenticationService.SignInWithGoogle();
+  this.router.navigate(['profile']);
 }
 
 }
