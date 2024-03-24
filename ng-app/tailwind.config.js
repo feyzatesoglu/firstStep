@@ -7,6 +7,5 @@ module.exports = {
     './dist/index.html',
     './src/**/*.{html,js}',
   ],
-  // ...
   // ... 
 }
