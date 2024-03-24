@@ -10,24 +10,26 @@ import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import firebase from 'firebase/compat/app';
+import { FirestoreModule } from '@angular/fire/firestore';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { ProfileComponent } from './profile/profile.component';
-
-
 @NgModule({
   declarations: [			
     AppComponent,
       LoginComponent,
       RegisterComponent,
-      ProfileComponent
    ],
   imports: [
     FormsModule,
     BrowserModule,
     AppRoutingModule,
+    provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    FirestoreModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

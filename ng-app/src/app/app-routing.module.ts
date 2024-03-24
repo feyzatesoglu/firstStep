@@ -13,8 +13,11 @@ const routes: Routes = [
     path: 'register',
     component: RegisterComponent,
   },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  },
   { path: '', redirectTo: '/login', pathMatch: 'full' }, // redirect to `first-component`,
-  { path: 'profile', component: ProfileComponent },
 ];
 
 @NgModule({
