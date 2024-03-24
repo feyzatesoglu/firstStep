@@ -24,9 +24,9 @@ export class RegisterComponent implements OnInit {
     this.authenticationService.registerWithEmailandPassword(this.email, this.password)
       .then(res => {
         console.log('Registration successful');
-        // direct login
+        this.router.navigate(['/login']);
       })
       .catch(err => console.error('Registration failed:', err));
   }
-
-}
+  }
+ 
