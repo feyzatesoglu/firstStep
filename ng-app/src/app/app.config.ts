@@ -1,9 +1,12 @@
 
 import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
-
+import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { initializeApp } from "firebase/app";
 
+export const appConfig: ApplicationConfig={
+  providers:[provideAnimations()]
+}
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
