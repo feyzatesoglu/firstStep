@@ -4,16 +4,17 @@ import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, ButtonModule],
   selector: 'app-login',
   templateUrl: './login.component.html',
 })
 export class LoginComponent implements OnInit {
-
   isLoggingIn = false;
+  loading = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -21,8 +22,7 @@ export class LoginComponent implements OnInit {
     private router: Router
   ) {}
 
-form!:FormGroup;
-
+  form!: FormGroup;
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
@@ -31,17 +31,21 @@ form!:FormGroup;
     });
   }
   login() {
-
-  const{email,password}=this.form.value;
-
- this.authenticationService
-      .signWithEmailandPassword(email, password)
-      .then((res) => {
-        console.log('Login successful');
-        this.router.navigate(['/profile']);
-      })
-      .catch((err) => alert(err));
- }
+    if (this.form.valid) {
+      this.loading=true;
+      const { email, password } = this.form.value;
+      this.authenticationService
+        .signWithEmailandPassword(email, password)
+        .then((res) => {
+          this.router.navigate(['/profile']);
+          setTimeout(() => {
+            this.loading = false; // Set loading state to false when operation completes
+          }, 3000); // Set loading state to 
+        })
+        
+        .catch((err) => alert(err));
+    }
+  }
   loginWithGoogle() {
     this.authenticationService.SignInWithGoogle();
     this.router.navigate(['profile']);
