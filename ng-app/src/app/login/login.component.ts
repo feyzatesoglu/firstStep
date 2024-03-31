@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['/profile']);
           setTimeout(() => {
             this.loading = false; // Set loading state to false when operation completes
-          }, 3000); // Set loading state to 
+          }, 2000);
         })
         
         .catch((err) => alert(err));
