@@ -3,10 +3,11 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   standalone:true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, ButtonModule],
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
@@ -14,6 +15,7 @@ import { CommonModule } from '@angular/common';
 export class RegisterComponent implements OnInit {
 
   registerForm!:FormGroup;
+  loading=false;
   constructor(
     private formBuilder: FormBuilder,
     private authenticationService:AuthenticationService,
@@ -30,9 +32,13 @@ export class RegisterComponent implements OnInit {
   }
   register() {
     const{email,password}=this.registerForm.value;
+    this.loading=true;
     this.authenticationService.registerWithEmailandPassword(email,password)
       .then(res => {
         console.log('Registration successful');
+        setTimeout(() => {
+          this.loading = false; // Set loading state to false when operation completes
+        }, 1000);
         this.router.navigate(['/login']);
       })
       .catch(err => console.error('Registration failed:', err));
