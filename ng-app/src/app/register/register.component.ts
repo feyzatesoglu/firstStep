@@ -4,6 +4,7 @@ import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
+import { UserDataService } from '../services/userData.service';
 
 @Component({
   standalone:true,
@@ -19,11 +20,13 @@ export class RegisterComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authenticationService:AuthenticationService,
-    private router:Router
+    private router:Router,
+    private userDataService: UserDataService
   ) { }
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
+      username:['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
@@ -31,7 +34,7 @@ export class RegisterComponent implements OnInit {
     validators: this.passwordMatchValidator
   }
   register() {
-    const{email,password}=this.registerForm.value;
+    const{email,password,username}=this.registerForm.value;
     this.loading=true;
     this.authenticationService.registerWithEmailandPassword(email,password)
       .then(res => {
