@@ -9,9 +9,9 @@ import  {AngularFireModule} from '@angular/fire/compat';
 import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 import { environment } from 'src/environments/environment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import firebase from 'firebase/compat/app';
 import { FirestoreModule } from '@angular/fire/firestore';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 @NgModule({
   declarations: [			
     AppComponent
@@ -22,13 +22,14 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
     AppRoutingModule,
     provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebase),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
     AngularFireAuthModule,
     FontAwesomeModule,
     ReactiveFormsModule,
     FirestoreModule,
     FormsModule
   ],
-  providers: [],
+  providers: [FirestoreModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

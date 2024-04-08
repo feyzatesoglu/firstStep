@@ -3,6 +3,10 @@ import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { initializeApp } from "firebase/app";
+import "firebase/firestore";
+import { getFirestore } from 'firebase/firestore';
+import firebase from 'firebase/compat/app';
+
 
 export const appConfig: ApplicationConfig={
   providers:[provideAnimations()]
@@ -20,3 +24,5 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+// Initialize Cloud Firestore and get a reference to the service
+const db = firebase.firestore();
