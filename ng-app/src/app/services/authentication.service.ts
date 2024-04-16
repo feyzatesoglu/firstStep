@@ -9,7 +9,7 @@ import { UserProfile } from 'firebase/auth';
 })
 export class AuthenticationService {
 
-  user: Observable<firebase.default.User | null>;
+  user: Observable<firebase.default.User|null>;
 
 constructor(private auth:AngularFireAuth) {
   this.user=auth.authState;
@@ -24,24 +24,17 @@ constructor(private auth:AngularFireAuth) {
   signWithEmailandPassword(email:string, password:string):Promise<firebase.default.auth.UserCredential>{
     return this.auth.signInWithEmailAndPassword(email,password);
   }
+   // Update user's profile
+   async updateUserProfile(displayName: string): Promise<void> {
+    const user = await this.auth.currentUser;
+    if (user) {
+      await user.updateProfile({ displayName });
+    } else {
+      throw new Error('User not logged in');
+    }
+  }
   logOut():Promise<void>{
     return this.auth.signOut();
   }
   
-  // Kullanıcı bilgilerini alma
-  getUserInfo(): Observable<any> {
-    return this.user.pipe(
-      map(user => {
-        if (user) {
-          return {
-            uid: user.uid,
-            email: user.email,
-            // Diğer kullanıcı bilgilerini burada alabilirsiniz
-          };
-        } else {
-          return null;
-        }
-      })
-    );
-  }
 }
